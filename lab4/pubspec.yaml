@@ -36,9 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -56,6 +53,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # Put optional local gallery pictures in assets/images/.
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

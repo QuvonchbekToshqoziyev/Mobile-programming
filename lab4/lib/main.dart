@@ -1,153 +1,138 @@
 import 'package:flutter/material.dart';
 
+// Each task stays in its own file; this page composes them into one scroll.
+import 'task_1_settings.dart';
+import 'task_2_form.dart';
+import 'task_3_counter.dart';
+import 'task_4_feedback.dart';
+import 'task_5_dialogs.dart';
+import 'task_6_pickers.dart';
+import 'task_7_list.dart';
+import 'task_8_gallery.dart';
+import 'task_9_navigation.dart';
+import 'task_10_structure.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const LabApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LabApp extends StatefulWidget {
+  const LabApp({super.key});
+
+  @override
+  State<LabApp> createState() => _LabAppState();
+}
+
+class _LabAppState extends State<LabApp> {
+  bool darkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Lab 4',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Settings'),
+      darkTheme: ThemeData.dark(useMaterial3: true),
+      themeMode: darkMode ? ThemeMode.dark : ThemeMode.light,
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Flutter Lab 4 — All Tasks')),
+        body: ListView(
+          padding: const EdgeInsets.all(12),
+          children: [
+            TaskSection(
+              number: 1,
+              title: 'Selection Controls',
+              child: Task1Settings(
+                darkMode: darkMode,
+                onDarkModeChanged: (value) => setState(() => darkMode = value),
+              ),
+            ),
+            const TaskSection(
+              number: 2,
+              title: 'Input Fields',
+              child: Task2Form(),
+            ),
+            const TaskSection(
+              number: 3,
+              title: 'Buttons and Counter',
+              child: Task3Counter(),
+            ),
+            const TaskSection(
+              number: 4,
+              title: 'Progress and Feedback',
+              child: Task4Feedback(),
+            ),
+            const TaskSection(
+              number: 5,
+              title: 'Dialogs and Modals',
+              child: Task5Dialogs(),
+            ),
+            const TaskSection(
+              number: 6,
+              title: 'Slider and Date Picker',
+              child: Task6Pickers(),
+            ),
+            const TaskSection(
+              number: 7,
+              title: 'Scrollable Collection',
+              child: Task7List(),
+            ),
+            const TaskSection(
+              number: 8,
+              title: 'Grid Gallery',
+              child: Task8Gallery(),
+            ),
+            const TaskSection(
+              number: 9,
+              title: 'Navigation Controls',
+              child: Task9Navigation(),
+            ),
+            const TaskSection(
+              number: 10,
+              title: 'Cards and FAQ',
+              child: Task10Structure(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class TaskSection extends StatelessWidget {
+  const TaskSection({
+    super.key,
+    required this.number,
+    required this.title,
+    required this.child,
+  });
 
+  final int number;
   final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  bool _darkMode = false;
-  bool _terms = false;
-  final _formKey = GlobalKey<FormState>();
-  bool _hidePassword = true;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-final pageTheme = _darkMode ? ThemeData.dark() : ThemeData.light();
-return Theme(
-    data: pageTheme,
-    child: Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: ListView(
-          padding: const EdgeInsets.all(16),
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      clipBehavior: Clip.antiAlias,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             SwitchListTile(title: const Text("Dark Mode"), value: _darkMode,
-              onChanged: (value) {
-                setState(() {
-                  _darkMode = value;
-                });
-              },),
-            CheckboxListTile(
-  title: const Text('Agree to Terms'),
-  value: _terms,
-  onChanged: (value) {
-    setState(() {
-      _terms = value ?? false;
-    });
-  },
-),
-
-ElevatedButton(
-  onPressed: _terms
-      ? () {
-          // Continue action
-        }
-      : null,
-  child: const Text('Continue'),
-),
-const Text(
-  'Login Form',
-  style: TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.bold,
-  ),
-),
-
-Form(
-  key: _formKey,
-  child: Column(
-    children: [
-      TextFormField(
-        obscureText: false,
-        decoration: const InputDecoration(
-          labelText: 'Email',
-          prefixIcon: Icon(Icons.email),
-        ),
-        validator: (value) {
-          if (value == null || value.trim().isEmpty) {
-            return 'Please enter your email';
-          }
-
-          if (!value.contains('@')) {
-            return 'Email must contain @';
-          }
-
-          return null;
-        },
-      ),
-
-      TextFormField(
-        obscureText: _hidePassword,
-        autocorrect: false,
-        enableSuggestions: false,
-        decoration: InputDecoration(
-          labelText: 'Password',
-          prefixIcon: const Icon(Icons.lock),
-          suffixIcon: IconButton(
-            icon: Icon(
-              _hidePassword
-                  ? Icons.visibility
-                  : Icons.visibility_off,
+            Text(
+              'Task $number — $title',
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-            onPressed: () {
-              setState(() {
-                _hidePassword = !_hidePassword;
-              });
-            },
-          ),
-        ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter your password';
-          }
-
-          return null;
-        },
-      ),
-
-      const SizedBox(height: 16),
-
-      ElevatedButton(
-        onPressed: () {
-          if (_formKey.currentState!.validate()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Login form is valid'),
-              ),
-            );
-          }
-        },
-        child: const Text('Login'),
-      ),
-    ],
-  ),
-),
+            const SizedBox(height: 8),
+            child,
           ],
+        ),
       ),
-    ));
+    );
   }
 }

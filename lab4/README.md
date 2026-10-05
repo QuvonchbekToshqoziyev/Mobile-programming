@@ -1,17 +1,30 @@
-# lab4
+# Flutter Lab 4
 
-A new Flutter project.
+Flutter mobile widgets laboratory with ten interactive tasks.
 
-## Getting Started
+## Run
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Task 8 images
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+No picture files were supplied with this repository. The gallery currently
+shows remote demo images from Picsum. To use your own pictures, place six image
+files in:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```text
+assets/images/
+```
+
+Then update the image list in `lib/task_8_gallery.dart` to use paths such as
+`assets/images/photo1.jpg`. Supported formats include `.jpg`, `.jpeg`, and
+`.png`.
+
+## Verification
+
+```bash
+flutter analyze
+```

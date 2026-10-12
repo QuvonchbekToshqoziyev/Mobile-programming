@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'main.dart';
 
 class Login extends StatelessWidget {
@@ -12,10 +13,10 @@ class Login extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             Navigator.pushReplacement(
-              context, 
-              MaterialPageRoute(builder: (context) => const HomeScreen())
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
             );
-          }, 
+          },
           child: const Text('Sign in'),
         ),
       ),

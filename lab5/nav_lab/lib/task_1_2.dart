@@ -1,60 +1,69 @@
 import 'package:flutter/material.dart';
 
-class Screen_A extends StatelessWidget {
-  const Screen_A({super.key});
+class ScreenA extends StatelessWidget {
+  const ScreenA({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Screen A (Task)')),
+      appBar: AppBar(
+        title: const Text('Screen A'),
+        backgroundColor: Colors.pink,
+      ),
       body: Center(
         child: ElevatedButton(
-              child: const Text('Next'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Screen_B()),
-                );
-              },
-            ),
+          child: const Text('Next'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ScreenB()),
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class Screen_B extends StatelessWidget {
-  const Screen_B({super.key});
+class ScreenB extends StatelessWidget {
+  const ScreenB({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Screen B')),
+      appBar: AppBar(
+        title: const Text('Screen B'),
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
         child: ElevatedButton(
-              child: const Text('Next'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Screen_C()),
-                );
-              },
-            ),
+          child: const Text('Next'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ScreenC()),
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class Screen_C extends StatelessWidget {
-  const Screen_C({super.key});
+class ScreenC extends StatelessWidget {
+  const ScreenC({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Screen C')),
+      appBar: AppBar(
+        title: const Text('Screen C'),
+        backgroundColor: Colors.green,
+      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Go back'),
+          child: const Text('Back'),
         ),
       ),
     );
